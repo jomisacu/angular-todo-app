@@ -1,0 +1,37 @@
+<form [formGroup]="taskForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Task form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" type="text">
+        <mat-error *ngIf="taskForm.hasError('required', 'title')">
+          Task title is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-horizontal-stepper></mat-horizontal-stepper>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate">
+        <mat-hint>YYYY-MM-DD</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-horizontal-stepper></mat-horizontal-stepper>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option [value]="TaskStatusEnum.PENDING">{{ TaskStatusEnum.PENDING }}</mat-option>
+          <mat-option [value]="TaskStatusEnum.COMPLETED">{{ TaskStatusEnum.COMPLETED }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card-actions align="end">
+        <button mat-flat-button color="accent" (click)="dispatchCloseFormRequest()">Cancel</button>
+        <span>&nbsp;</span>
+        <button mat-flat-button color="primary" (click)="saveTask()" [disabled]="taskForm.invalid">Save</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</form>

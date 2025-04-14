@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Angular Todo App</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-task-form *ngIf="isAdding || isEditing" [task]="editedTask!" (closeFormRequest)="closeEditor()" (taskSaved)="onTaskSavedEvent($event)" />
+    <mat-horizontal-stepper />
+    <app-task-list [tasks]="tasks" (editTaskRequest)="editTask($event)" (deleteTaskRequest)="deleteTask($event)" />
+    <button mat-flat-button color="primary" (click)="addTask()" [disabled]="isEditing || isAdding">
+      <mat-icon>add</mat-icon>
+      Task
+    </button>
+  </mat-card-content>
+</mat-card>

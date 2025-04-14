@@ -1,0 +1,23 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 10px;
+    margin: 0 0 10px;
+
+    &.task-pending {
+      background-color: #ffffac;
+
+      &.task-due {
+        background-color: #ffb6b6;
+      }
+    }
+
+    &.task-completed {
+      background-color: #c3ffc3;
+    }
+  }
+}
+

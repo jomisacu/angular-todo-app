@@ -1,0 +1,12 @@
+<ul class="task-list">
+  <li *ngFor="let task of tasks" [ngClass]="{
+    'task-completed': task.isCompleted(),
+    'task-pending': task.isPending(),
+    'task-due': task.isExpired(),
+  }">
+    {{ task.getTitle() }}
+    <div></div>
+    <button mat-button color="warn" (click)="onDeleteTaskButtonClick(task);">Delete</button>
+    <button mat-button color="primary" (click)="onEditTaskButtonClick(task);">Edit</button>
+  </li>
+</ul>
